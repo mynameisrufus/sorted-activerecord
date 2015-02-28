@@ -7,16 +7,19 @@ module Sorted
     module Helper
       extend ActiveSupport::Concern
       included do
-        def self.sorted(sort, order = nil)
-          quote = ->(frag) { connection.quote_column_name(frag) }
-          builder = ::Sorted::ActiveRecord::Builder.new(sort, order, quote)
-          order(builder.to_s)
+
+        def self.sorted(sort: [], order: [], whitelist: [])
+          builder = ::Sorted::ActiveRecord::Builder.new(sort: sort,
+                                                        order: order,
+                                                        whitelist: whitelist)
+          order(builder.set.to_hash)
         end
 
-        def self.resorted(sort, order = nil)
-          quote = ->(frag) { connection.quote_column_name(frag) }
-          builder = ::Sorted::ActiveRecord::Builder.new(sort, order, quote)
-          reorder(builder.to_s)
+        def self.resorted(sort: [], order: [], whitelist: [])
+          builder = ::Sorted::ActiveRecord::Builder.new(sort: sort,
+                                                        order: order,
+                                                        whitelist: whitelist)
+          reorder(builder.set.to_hash)
         end
       end
     end

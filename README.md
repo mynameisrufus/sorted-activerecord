@@ -24,17 +24,34 @@ Or install it yourself as:
 
 ## Usage
 
-Using the `sorted` method with the optional default order argument:
+The sorted scope takes two optional arguments, `sort` and `order`, they both
+conform to the [AR query
+interface](http://guides.rubyonrails.org/active_record_querying.html#ordering)
+except that if you provide a string to the sort argument it expects a
+`Sorted::URIQuery` encoded string:
 
 ```ruby
-@users = User.sorted(params[:sort], "email ASC").page(params[:page])
+@users = User.sorted(sort: 'created_asc!orders_count_asc'
+                     order: 'orders_count ASC, created_at DESC')
 ```
 
-A `resorted` method is also available and works the same way as the `reorder` method in Rails.
-It forces the order to be the one passed in:
+See https://github.com/mynameisrufus/sorted-actionview for a view helper to
+generate the sort string or roll your own.
+
+A `resorted` method is also available and works the same way as the `reorder`
+method in Rails. It forces the order to be the one passed in:
 
 ```ruby
-@users = User.order(:id).sorted(nil, 'name DESC').resorted(params[:sort], 'email ASC')
+@users = User.order(:id).sorted(order: 'name DESC')
+             .resorted(sort: params[:sort], order: 'email ASC')
+```
+
+If you want to prevent people creating 500s by messing with the sort url string
+you can use a white list:
+
+```ruby
+@users = User.sorted(sort: 'created_asc!explode_me_asc'
+                     whitelist: %w(created_at))
 ```
 
 ## Contributing

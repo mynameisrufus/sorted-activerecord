@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'railties', '>= 4.0.0'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'guard-rspec'
   # spec.add_development_dependency 'activerecord-jdbcsqlite3-adapter'
   spec.add_development_dependency 'sqlite3', '>= 1.3.5'
 end
