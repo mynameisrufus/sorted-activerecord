@@ -80,4 +80,12 @@ describe Sorted::ActiveRecord do
     expect(subject.sorted(sort: 'orders_count_asc!created_at_desc',
                           whitelist: %(created_at)).to_sql).to match(order_by)
   end
+
+  it 'should not raise error with nil value' do
+    expect(-> { subject.sorted(sort: nil) }).to_not raise_error
+  end
+
+  it 'should not raise error with empty string' do
+    expect(-> { subject.sorted(sort: '') }).to_not raise_error
+  end
 end

@@ -31,8 +31,7 @@ except that if you provide a string to the sort argument it expects a
 `Sorted::URIQuery` encoded string:
 
 ```ruby
-@users = User.sorted(sort: 'created_asc!orders_count_asc'
-                     order: 'orders_count ASC, created_at DESC')
+@users = User.sorted(sort: 'created_asc!orders_count_asc', order: 'orders_count ASC, created_at DESC')
 ```
 
 See https://github.com/mynameisrufus/sorted-actionview for a view helper to
@@ -42,16 +41,14 @@ A `resorted` method is also available and works the same way as the `reorder`
 method in Rails. It forces the order to be the one passed in:
 
 ```ruby
-@users = User.order(:id).sorted(order: 'name DESC')
-             .resorted(sort: params[:sort], order: 'email ASC')
+@users = User.order(:id).sorted(order: 'name DESC').resorted(sort: params[:sort], order: 'email ASC')
 ```
 
 If you want to prevent people creating 500s by messing with the sort url string
 you can use a white list:
 
 ```ruby
-@users = User.sorted(sort: 'created_asc!explode_me_asc'
-                     whitelist: %w(created_at))
+@users = User.sorted(sort: 'created_asc!explode_me_asc', whitelist: %w(created_at))
 ```
 
 ## Contributing

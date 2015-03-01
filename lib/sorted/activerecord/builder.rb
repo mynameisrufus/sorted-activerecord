@@ -17,6 +17,7 @@ module Sorted
       end
 
       def parse_sort(sort)
+        return ::Sorted::Set.new if sort.nil?
         case sort.class.name
         when 'String'
           ::Sorted::URIQuery.parse(sort)
@@ -28,6 +29,7 @@ module Sorted
       end
 
       def parse_order(order)
+        return ::Sorted::Set.new if order.nil?
         case order.class.name
         when 'String'
           ::Sorted::SQLQuery.parse(order)
@@ -54,6 +56,12 @@ module Sorted
           end
           memo
         end
+      end
+
+      # We return sym here becuase rails 4.0.0 does not like string for values
+      # and keys.
+      def to_hash
+        @set.to_a.inject({}) { |a, e| a.merge(Hash[e[0].to_sym, e[1].to_sym]) }
       end
     end
   end
