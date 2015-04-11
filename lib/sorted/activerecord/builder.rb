@@ -8,6 +8,7 @@ module Sorted
       attr_reader :set
 
       def initialize(sort: [], order: [], whitelist: [])
+        @return_hash = true
         uri = parse_sort(sort)
         if whitelist.length > 0
           uri = ::Sorted::Set.new(uri.select { |o| whitelist.include?(o[0]) })
@@ -32,6 +33,7 @@ module Sorted
         return ::Sorted::Set.new if order.nil?
         case order.class.name
         when 'String'
+          @return_hash = false
           ::Sorted::SQLQuery.parse(order)
         when 'Array'
           parse(order)
@@ -46,6 +48,7 @@ module Sorted
           when 'Hash'
             memo = memo + parse(value.to_a)
           when 'String'
+            @return_hash = false
             memo = memo + ::Sorted::SQLQuery.parse(value)
           when 'Symbol'
             memo = memo << [value.to_s, 'asc']
@@ -62,6 +65,10 @@ module Sorted
       # and keys.
       def to_hash
         @set.to_a.inject({}) { |a, e| a.merge(Hash[e[0].to_sym, e[1].to_sym]) }
+      end
+
+      def to_sql
+        @return_hash ? to_hash : ::Sorted::SQLQuery.encode(@set)
       end
     end
   end

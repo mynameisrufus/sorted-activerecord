@@ -12,14 +12,14 @@ module Sorted
           builder = ::Sorted::ActiveRecord::Builder.new(sort: sort,
                                                         order: order,
                                                         whitelist: whitelist)
-          order(builder.to_hash)
+          order(builder.to_sql)
         end
 
         def self.resorted(sort: [], order: [], whitelist: [])
           builder = ::Sorted::ActiveRecord::Builder.new(sort: sort,
                                                         order: order,
                                                         whitelist: whitelist)
-          reorder(builder.to_hash)
+          reorder(builder.to_sql)
         end
       end
     end

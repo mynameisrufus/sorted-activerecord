@@ -9,4 +9,4 @@ end
 
 RuboCop::RakeTask.new
 
-task default: %w(rubocop spec)
+task default: %w(spec rubocop)
