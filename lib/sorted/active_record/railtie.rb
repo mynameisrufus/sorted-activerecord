@@ -1,6 +1,6 @@
 require 'rails'
 require 'rails/railtie'
-require 'sorted/activerecord/helper'
+require 'sorted/active_record/helper'
 
 module Sorted
   module ActiveRecord

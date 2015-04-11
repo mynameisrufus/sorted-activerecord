@@ -1,6 +1,6 @@
 require 'active_record'
 require 'active_support/concern'
-require 'sorted/activerecord/builder'
+require 'sorted/active_record/builder'
 
 module Sorted
   module ActiveRecord

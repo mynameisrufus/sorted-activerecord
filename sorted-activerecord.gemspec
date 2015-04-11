@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sorted/activerecord/version'
+require 'sorted/active_record/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'sorted-activerecord'
-  spec.version       = Sorted::Activerecord::VERSION
+  spec.version       = Sorted::ActiveRecord::VERSION
   spec.authors       = ['Rufus Post']
   spec.email         = ['Rufus.Post@team.telstra.com']
   spec.summary       = 'Activerecord scoped for sorted.'

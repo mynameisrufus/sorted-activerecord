@@ -1,5 +1,5 @@
 module Sorted
-  module Activerecord
+  module ActiveRecord
     VERSION = '0.1.2'
   end
 end

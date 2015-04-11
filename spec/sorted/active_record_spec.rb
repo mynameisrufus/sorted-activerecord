@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'active_record'
-require 'sorted/activerecord/helper'
+require 'sorted/active_record/helper'
 
 ActiveRecord::Base.send(:include, Sorted::ActiveRecord::Helper)
 
