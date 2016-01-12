@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'sorted-activerecord'
   spec.version       = Sorted::ActiveRecord::VERSION
   spec.authors       = ['Rufus Post']
-  spec.email         = ['Rufus.Post@team.telstra.com']
+  spec.email         = ['rufuspost@gmail.com']
   spec.summary       = 'Activerecord scoped for sorted.'
   spec.description   = 'Allows the use of the sorted gem with Activerecord.'
   spec.homepage      = ''
