@@ -7,7 +7,6 @@ module Sorted
     module Helper
       extend ActiveSupport::Concern
       included do
-
         def self.sorted(sort: [], order: [], whitelist: [])
           builder = ::Sorted::ActiveRecord::Builder.new(sort: sort,
                                                         order: order,

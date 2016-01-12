@@ -1,4 +1,6 @@
-require 'sorted'
+require 'sorted/set'
+require 'sorted/sql_query'
+require 'sorted/uri_query'
 
 module Sorted
   module ActiveRecord
@@ -42,14 +44,16 @@ module Sorted
         end
       end
 
+      # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/AbcSize
       def parse(values)
         values.inject(Sorted::Set.new) do |memo, value|
           case value.class.name
           when 'Hash'
-            memo = memo + parse(value.to_a)
+            memo += parse(value.to_a)
           when 'String'
             @return_hash = false
-            memo = memo + ::Sorted::SQLQuery.parse(value)
+            memo += ::Sorted::SQLQuery.parse(value)
           when 'Symbol'
             memo = memo << [value.to_s, 'asc']
           when 'Array'

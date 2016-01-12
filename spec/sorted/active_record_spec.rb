@@ -56,19 +56,19 @@ describe Sorted::ActiveRecord do
   end
 
   it 'should allow hash as order' do
-    expected = subject.order({ created_at: :desc }).to_sql
+    expected = subject.order(created_at: :desc).to_sql
     actual = subject.sorted(order: [{ created_at: :desc }]).to_sql
     expect(actual).to match(expected)
   end
 
   it 'should allow hash as sort' do
-    expected = subject.order({ created_at: :desc }).to_sql
+    expected = subject.order(created_at: :desc).to_sql
     actual = subject.sorted(sort: [{ created_at: :desc }]).to_sql
     expect(actual).to match(expected)
   end
 
   it 'should allow symbols and hash as order' do
-    expected = subject.order(:orders_count, { created_at: :desc }).to_sql
+    expected = subject.order(:orders_count, created_at: :desc).to_sql
     actual = subject.sorted(sort: [:orders_count, { created_at: :desc }]).to_sql
     expect(actual).to match(expected)
   end

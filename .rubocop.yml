@@ -1,12 +1,13 @@
-# Offense count: 5
-# Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Max: 174
 
-# Offense count: 5
 Style/Documentation:
   Enabled: false
 
-# Offense count: 2
-Style/RegexpLiteral:
-  MaxSlashes: 0
+SignalException:
+  # prefer raise to fail
+  EnforcedStyle: only_raise
+
+Lint/HandleExceptions:
+  Exclude:
+    - 'lib/sorted/active_record.rb'

@@ -1,7 +1,7 @@
 begin
   require 'rails'
 rescue LoadError
-  #do nothing
+  # do nothing
 end
 
 require 'sorted/active_record/version'
