@@ -12,7 +12,7 @@ module Sorted
       def initialize(sort: [], order: [], whitelist: [])
         @return_hash = true
         uri = parse_sort(sort)
-        if whitelist.length > 0
+        unless whitelist.empty?
           uri = ::Sorted::Set.new(uri.select { |o| whitelist.include?(o[0]) })
         end
         sql = parse_order(order)
